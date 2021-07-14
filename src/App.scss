@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&family=Raleway:wght@300;400;700&family=Bigelow+Rules&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+
+  // font-family: 'Raleway', sans-serif;
+}
+
+.main-container {
+  width: 97vw;
+  // background-color: #efefef;
+  background: linear-gradient(270deg, #071b52 0, teal);
+  margin-top: 1rem;
+  border-radius: 10px;
+}
+
+.main-section {
+  color: rgb(30, 14, 14);
+  padding: 30px 10px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 122px;
+  align-items: center;
+  margin-top: -23px;
+
+  &__logo {
+    font-size: 65px;
+    font-family: "Bigelow Rules", cursive;
+    color: yellow;
+    // color: #0ccac4;
+  }
+  &__menu {
+    &--btn {
+      padding: 10px;
+      border-radius: 5px;
+      // background: linear-gradient(270deg, #cad5f2 0, #00bdbd);
+      background-color: rgb(226, 226, 15);
+      font-family: "Montserrat";
+      font-weight: 500;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+    &:hover {
+      color: rgb(137, 125, 125);
+    }
+  }
+}
+
+.home {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-family: "Montserrat", "Helvet";
+  padding-right: 5px;
+  &__left {
+    background-color: #ffec55;
+    border-radius: 30px 8px 8px 30px;
+    margin-right: 5px;
+
+    &--banner {
+      border-radius: 30px 2px;
+      height: 150px;
+      width: 100%;
+    }
+    &--title h2 {
+      font-size: 15px;
+      color: #000;
+      margin-top: 35px;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .movieBox {
+      padding: 0 5px;
+      background: #252121;
+      border-radius: 10px;
+      margin-bottom: 45px;
+      &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 5px;
+      }
+      &__head h2 {
+        font-size: 13px;
+      }
+      &__movielist {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+
+        &__left {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.7rem;
+        }
+
+        &--img {
+          height: 60px;
+          width: 60px;
+          border-radius: 13px;
+        }
+        &--rating {
+          color: yellow;
+          font-size: 0.9rem;
+          font-weight: 500;
+          margin-right: 5px;
+        }
+      }
+      &__btn {
+        font-size: 0.6rem;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
+  &__right {
+    background: #d4fb68;
+    border-radius: 8px 30px 30px 8px;
+
+    .search-bar {
+      background: #f4f4f4;
+      font-weight: 500;
+      padding: 10px;
+      letter-spacing: 2px;
+      border-radius: 8px;
+    }
+    .slider {
+      height: 200px;
+
+      img {
+        border-radius: 12px;
+      }
+    }
+
+    .movie-menu {
+      margin-top: 10px;
+      margin-top: 135px;
+      padding: 0 10px;
+      img {
+        width: 100%;
+        height: 200px;
+        border-radius: 15px;
+      }
+      &__upcoming {
+        position: relative;
+        overflow: hidden !important;
+
+        &--hover {
+          opacity: 0;
+          transform: translateY(100%);
+          transition: transform 0.5s ease-in-out;
+          margin-bottom: -32px;
+        }
+
+        &:hover .movie-menu__upcoming--hover {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transform: translateY(0%);
+          opacity: 1;
+          position: absolute;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background-color: #5617b5;
+          color: red;
+          height: 100%;
+          margin: 0 12px;
+          border-radius: 10px;
+          background: #13d1dae6;
+        }
+      }
+    }
+  }
+}
+
+.carousel-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 200px;
+}
+
+.explore {
+  img {
+    // height: 350px;
+    width: 55%;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 90%; */
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+    padding: 0 10px 5px 10px;
+  }
+  .navigation {
+    align-items: center;
+    margin: 0 10px;
+
+    &__logo {
+      font-size: 50px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .home {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
