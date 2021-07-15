@@ -3,7 +3,7 @@ import PlayingList from './PlayingList';
 
 function HomeLeft() {
     return (
-        <div className="home__left col-12 col-sm-3">
+        <div className="home__left col-12 col-sm-3 d-none d-md-block">
             <img
                 className="home__left--banner img-fluid p-2 "
                 src={`${process.env.PUBLIC_URL}/assests/images/movie-time-poster.jpg`}

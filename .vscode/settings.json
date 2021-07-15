@@ -2,7 +2,6 @@
 
 {
   // Theme
-  //   "workbench.colorTheme": "Dracula",/
 
   // config related to code formatting
   "editor.defaultFormatter": "esbenp.prettier-vscode",
