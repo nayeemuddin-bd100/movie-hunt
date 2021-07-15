@@ -27,6 +27,7 @@ function HomeLeft() {
                     <h3 className="movieBox__btn"> Show More </h3>
                 </div>
             </div>
+            <div className="contact-us" />
         </div>
     );
 }
