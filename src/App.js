@@ -4,10 +4,11 @@ import Explore from './components/Explore/Explore';
 import Home from './components/Home/Home';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import NotFound from './components/NotFound/NotFound';
+import GlobalState from './context/GlobalState';
 
 function App() {
     return (
-        <div className="App">
+        <GlobalState className="App">
             <Switch>
                 <Route path="/home">
                     <Home />
@@ -25,7 +26,7 @@ function App() {
                     <NotFound />
                 </Route>
             </Switch>
-        </div>
+        </GlobalState>
     );
 }
 
