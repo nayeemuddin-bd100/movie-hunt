@@ -5,8 +5,8 @@ import HomeLeft from './HomeLeft/HomeLeft';
 import HomeRight from './HomeRight/HomeRight';
 
 function Home() {
-    const test = useContext(GlobalContext);
-    console.log(test);
+    const { error } = useContext(GlobalContext);
+    console.log(error);
 
     return (
         <div className="main-container">

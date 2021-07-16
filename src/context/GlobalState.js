@@ -1,16 +1,42 @@
-import React, { createContext } from 'react';
+import axios from 'axios';
+import React, { createContext, useEffect, useReducer } from 'react';
+import { AppReducer } from './AppReducer';
 
-// const initState = {
-//     data: [],
-// };
+const initState = {
+    data: [],
+    error: '',
+};
 
 export const GlobalContext = createContext();
 function GlobalState({ children }) {
-    // const [state, dispatch] = useReducer(AppReducer, initState);
+    const [state, dispatch] = useReducer(AppReducer, initState);
 
-    return (
-        <GlobalContext.Provider value={{ text: 'test context' }}>{children}</GlobalContext.Provider>
-    );
+    useEffect(() => {
+        (async () => {
+            try {
+                await axios
+                    .get(
+                        'https://api.themoviedb.org/3/movie/popular?api_key=61a8b343fdd9fab973082cb4288fb534&language=en-US&page=1'
+                    )
+                    .then((response) => {
+                        dispatch({
+                            type: 'FETCH_SUCCESS',
+                            payload: response.data.results,
+                        });
+                    });
+            } catch (error) {
+                console.log(error.message);
+                dispatch({
+                    type: 'FETCH_ERROR',
+                    payload: error.message,
+                });
+            }
+        })();
+    }, []);
+
+    const { error, data } = state;
+
+    return <GlobalContext.Provider value={{ data, error }}>{children}</GlobalContext.Provider>;
 }
 
 export default GlobalState;

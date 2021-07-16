@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 import SearchBar from '../Home/HomeRight/SearchBar';
 import TestCard from '../Home/HomeRight/TestCard';
 import Nav from '../Navigation/Nav';
 import './Explore.css';
 
 function Explore() {
+    const { data } = useContext(GlobalContext);
     return (
         <div className="main-container">
             <div className="main-section">
@@ -14,36 +16,13 @@ function Explore() {
 
                     <div className="explore text-center mt-2 py-5">
                         <div className="wrapper cardItem">
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
-                            <TestCard />
+                            {data.map((movie) => (
+                                <TestCard
+                                    key={movie.id}
+                                    movieName={movie.original_title}
+                                    imgId={movie.backdrop_path}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../../context/GlobalState';
 import Carousel from './Carousel';
 import MovieMenu from './MovieMenu';
 import SearchBar from './SearchBar';
 import TestCard from './TestCard';
 
 function HomeRight() {
+    const { data } = useContext(GlobalContext);
+    const specificData = data.slice(8, 16);
+    console.log(specificData);
     return (
         <div className="home__right col-12 col-md-9 px-4 py-5">
             <SearchBar />
@@ -16,14 +20,13 @@ function HomeRight() {
             </div>
             <div className="explore text-center mt-2 py-5">
                 <div className="wrapper cardItem">
-                    <TestCard />
-                    <TestCard />
-                    <TestCard />
-                    <TestCard />
-                    <TestCard />
-                    <TestCard />
-                    <TestCard />
-                    <TestCard />
+                    {specificData.map((movie) => (
+                        <TestCard
+                            key={movie.id}
+                            movieName={movie.original_title}
+                            imgId={movie.backdrop_path}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
