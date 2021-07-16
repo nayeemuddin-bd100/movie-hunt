@@ -208,7 +208,8 @@ body {
           left: 0;
           bottom: 0;
           background-color: #5617b5;
-          color: red;
+          color: black;
+          font-weight: 500;
           height: 100%;
           margin: 0 12px;
           border-radius: 10px;
@@ -238,6 +239,17 @@ body {
   flex-wrap: wrap;
   /* width: 90%; */
   justify-content: space-around;
+}
+
+/* Globally router Link style set to default*/
+.router-link {
+  text-decoration: inherit;
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+    text-decoration: inherit;
+  }
 }
 
 @media (max-width: 768px) {

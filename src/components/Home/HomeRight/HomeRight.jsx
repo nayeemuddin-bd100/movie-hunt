@@ -11,8 +11,8 @@ function HomeRight() {
             <Carousel />
 
             <div className="movie-menu row">
-                <MovieMenu />
-                <MovieMenu />
+                <MovieMenu value="upcoming" />
+                <MovieMenu value="toprated" />
             </div>
             <div className="explore text-center mt-2 py-5">
                 <div className="wrapper cardItem">
