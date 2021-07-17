@@ -1,13 +1,9 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalState';
+import React from 'react';
 import Nav from '../Navigation/Nav';
 import HomeLeft from './HomeLeft/HomeLeft';
 import HomeRight from './HomeRight/HomeRight';
 
 function Home() {
-    const { error } = useContext(GlobalContext);
-    console.log(error);
-
     return (
         <div className="main-container">
             <div className="main-section">

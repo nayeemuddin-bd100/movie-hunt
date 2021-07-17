@@ -9,6 +9,8 @@ function HomeRight() {
     const { data } = useContext(GlobalContext);
     const specificData = data.slice(8, 16);
     // console.log(specificData);
+    throw new Error();
+    // eslint-disable-next-line no-unreachable
     return (
         <div className="home__right col-12 col-md-9 px-4 py-5">
             <SearchBar />
