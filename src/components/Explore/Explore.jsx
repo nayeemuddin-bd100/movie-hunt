@@ -21,6 +21,7 @@ function Explore() {
                                     key={movie.id}
                                     movieName={movie.original_title}
                                     imgId={movie.backdrop_path}
+                                    id={movie.id}
                                 />
                             ))}
                         </div>

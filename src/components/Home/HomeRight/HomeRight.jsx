@@ -8,7 +8,7 @@ import TestCard from './TestCard';
 function HomeRight() {
     const { data } = useContext(GlobalContext);
     const specificData = data.slice(8, 16);
-    console.log(specificData);
+    // console.log(specificData);
     return (
         <div className="home__right col-12 col-md-9 px-4 py-5">
             <SearchBar />
@@ -25,6 +25,7 @@ function HomeRight() {
                             key={movie.id}
                             movieName={movie.original_title}
                             imgId={movie.backdrop_path}
+                            id={movie.id}
                         />
                     ))}
                 </div>

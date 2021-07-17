@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TestCard.css';
 
-function TestCard({ movieName, imgId }) {
+function TestCard({ movieName, imgId, id }) {
     return (
         <div className="card">
             <img src={`https://image.tmdb.org/t/p/w1280/${imgId}`} />
@@ -12,8 +12,7 @@ function TestCard({ movieName, imgId }) {
                 <p>{movieName}</p>
 
                 <button type="button">
-                    {' '}
-                    <Link style={{ textDecoration: 'none' }} to="/movidetails/12">
+                    <Link to={`/movidetails/${id}`} className="router-link">
                         More
                     </Link>
                 </button>

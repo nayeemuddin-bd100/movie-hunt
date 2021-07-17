@@ -34,6 +34,22 @@ function GlobalState({ children }) {
         })();
     }, []);
 
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             axios.get('')
+
+    //        }catch(error){ console.log(error.message)}
+    //     })()
+    // }, [])
+
+    // const getMovieDetails (id) => {
+    //     dispatch({
+    //         type: 'GET_MOVIE_DETAILS',
+    //         payload:
+    //     })
+    // }
+
     const { error, data } = state;
 
     return <GlobalContext.Provider value={{ data, error }}>{children}</GlobalContext.Provider>;

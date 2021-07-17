@@ -1,16 +1,47 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './MovieDetails.css';
 
 function DetailsCard() {
+    const [details, setDetails] = useState({});
+    const { id } = useParams();
+    const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=61a8b343fdd9fab973082cb4288fb534&language=en-US`;
+
+    useEffect(() => {
+        (async () => {
+            try {
+                axios.get(movieDetailsUrl).then((response) => setDetails(response.data));
+            } catch (error) {
+                console.log(error.message);
+            }
+        })();
+    }, [movieDetailsUrl]);
+
+    const {
+        popularity,
+        release_date,
+        tagline,
+        original_title,
+        backdrop_path,
+        overview,
+        spoken_languages,
+        vote_average,
+    } = details;
+
+    // const temp = spoken_languages && spoken_languages.map((language) => language.english_name);
+    // console.log(temp);
+
     return (
         <div className="movie-card">
             <div className="container ">
                 <a href="#">
                     <img
-                        src={`${process.env.PUBLIC_URL}/assests/images/movie-time-poster.jpg`}
-                        // src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_cover.jpg"
+                        src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`}
                         alt="cover"
                         className="cover d-none d-sm-block aa"
                     />
@@ -18,9 +49,9 @@ function DetailsCard() {
 
                 <div className="hero">
                     <div className="details">
-                        <h4 className="title1">The Hobbit</h4>
+                        <h4 className="title1"> {original_title} </h4>
 
-                        <div className="title2">The Battle of the Five Armies </div>
+                        <div className="title2"> {tagline || original_title} </div>
 
                         <fieldset className="rating">
                             <input type="radio" id="star5" name="rating" value="5" />
@@ -68,27 +99,40 @@ function DetailsCard() {
                 <div className="description">
                     <div className="column1 d-none d-sm-block aa">
                         <div style={{ color: 'white' }}>
-                            <p className="mb-0">Release Date: 12.2.2020</p>
-                            <p className="mb-0">popularity: 123123.21</p>
-                            <p className="mb-0">Language: English</p>
+                            <p className="mb-0">Release Date: {release_date}</p>
+                            <p className="mb-0">popularity: {popularity}</p>
                             <p className="mb-0">
-                                Imdb Rating: <strong style={{ color: 'yellow' }}> 7.3</strong>
+                                Language:
+                                {spoken_languages &&
+                                    spoken_languages.map((language) => (
+                                        <span>{`${language.english_name} `}</span>
+                                    ))}
+                            </p>
+                            <p className="mb-0">
+                                Imdb Rating:
+                                <strong style={{ color: 'yellow' }}> {vote_average} </strong>
                             </p>
                         </div>
                     </div>
 
                     <div className="column2">
                         <p>
-                            Bilbo Baggins is swept into a quest to reclaim the lost Dwarf Kingdom of
-                            Erebor from the fearsome dragon Smaug. Approached out of the blue by the
-                            wizard Gandalf the Grey, Bilbo finds himself joining a company of
-                            thirteen dwarves led by the legendary warrior, Thorin Oakenshield. Their
-                            journey will take them into the Wild; through...{' '}
+                            {overview}
                             <div className="d-sm-none mt-5 aa">
                                 <div>
-                                    <p className="mb-0">Release Date: 12.2.2020</p>
-                                    <p className="mb-0">popularity: 123123.21</p>
-                                    <p className="mb-0">Language: English</p>
+                                    <p className="mb-0">Release Date: {release_date}</p>
+                                    <p className="mb-0">popularity: {popularity}</p>
+                                    <p className="mb-0">
+                                        Language:
+                                        {spoken_languages &&
+                                            spoken_languages.map((language) => (
+                                                <span>{`${language.english_name} `}</span>
+                                            ))}
+                                    </p>
+                                    <p className="mb-0">
+                                        Imdb Rating:
+                                        <strong style={{ color: 'yellow' }}>{vote_average}</strong>
+                                    </p>
                                 </div>
                             </div>
                         </p>
