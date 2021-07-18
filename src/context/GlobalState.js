@@ -4,6 +4,7 @@ import { AppReducer } from './AppReducer';
 
 const initState = {
     data: [],
+    initialData: [],
     error: '',
 };
 
@@ -34,25 +35,36 @@ function GlobalState({ children }) {
         })();
     }, []);
 
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             axios.get('')
+    const handleError = (errorMessage) => {
+        dispatch({
+            type: 'FETCH_ERROR',
+            payload: errorMessage,
+        });
+    };
+    const handleSearch = (value) => {
+        dispatch({
+            type: 'SEARCH_DATA',
+            payload: value,
+        });
+    };
 
-    //        }catch(error){ console.log(error.message)}
-    //     })()
-    // }, [])
+    const clearData = () => {
+        dispatch({
+            type: 'CLEAR_DATA',
+        });
+    };
 
-    // const getMovieDetails (id) => {
-    //     dispatch({
-    //         type: 'GET_MOVIE_DETAILS',
-    //         payload:
-    //     })
-    // }
+    // const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=61a8b343fdd9fab973082cb4288fb534&language=en-US&query=forrest%20gump&page=1&include_adult=false`;
 
-    const { error, data } = state;
+    const { error, data, initialData } = state;
 
-    return <GlobalContext.Provider value={{ data, error }}>{children}</GlobalContext.Provider>;
+    return (
+        <GlobalContext.Provider
+            value={{ data, initialData, error, handleError, handleSearch, clearData }}
+        >
+            {children}
+        </GlobalContext.Provider>
+    );
 }
 
 export default GlobalState;

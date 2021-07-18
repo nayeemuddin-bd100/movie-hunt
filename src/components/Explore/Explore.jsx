@@ -6,7 +6,7 @@ import Nav from '../Navigation/Nav';
 import './Explore.css';
 
 function Explore() {
-    const { data } = useContext(GlobalContext);
+    const { data, initialData } = useContext(GlobalContext);
     return (
         <div className="main-container">
             <div className="main-section">
@@ -16,14 +16,23 @@ function Explore() {
 
                     <div className="explore text-center mt-2 py-5">
                         <div className="wrapper cardItem">
-                            {data.map((movie) => (
-                                <TestCard
-                                    key={movie.id}
-                                    movieName={movie.original_title}
-                                    imgId={movie.backdrop_path}
-                                    id={movie.id}
-                                />
-                            ))}
+                            {data.length > 0
+                                ? data.map((movie) => (
+                                      <TestCard
+                                          key={movie.id}
+                                          movieName={movie.original_title}
+                                          imgId={movie.backdrop_path}
+                                          id={movie.id}
+                                      />
+                                  ))
+                                : initialData.map((movie) => (
+                                      <TestCard
+                                          key={movie.id}
+                                          movieName={movie.original_title}
+                                          imgId={movie.backdrop_path}
+                                          id={movie.id}
+                                      />
+                                  ))}
                         </div>
                     </div>
                 </div>
