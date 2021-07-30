@@ -5,22 +5,22 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { IMAGE_URL, MOVIE_DETAILS } from '../../Api_Config';
 import './MovieDetails.css';
 
 function DetailsCard() {
     const [details, setDetails] = useState({});
     const { id } = useParams();
-    const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=61a8b343fdd9fab973082cb4288fb534&language=en-US`;
 
     useEffect(() => {
         (async () => {
             try {
-                axios.get(movieDetailsUrl).then((response) => setDetails(response.data));
+                axios.get(MOVIE_DETAILS(id)).then((response) => setDetails(response.data));
             } catch (error) {
                 console.log(error.message);
             }
         })();
-    }, [movieDetailsUrl]);
+    }, [id]);
 
     const {
         popularity,
@@ -33,19 +33,22 @@ function DetailsCard() {
         vote_average,
     } = details;
 
-    // const temp = spoken_languages && spoken_languages.map((language) => language.english_name);
-    // console.log(temp);
-
     return (
         <div className="movie-card">
             <div className="container ">
-                <a href="#">
+                {backdrop_path ? (
                     <img
-                        src={`https://image.tmdb.org/t/p/w1280/${backdrop_path}`}
+                        src={`${IMAGE_URL}w1280/${backdrop_path}`}
                         alt="cover"
                         className="cover d-none d-sm-block aa"
                     />
-                </a>
+                ) : (
+                    <img
+                        src={`${process.env.PUBLIC_URL}/assests/images/movie-time-poster.jpg`}
+                        alt="cover"
+                        className="cover d-none d-sm-block aa"
+                    />
+                )}
 
                 <div className="hero">
                     <div className="details">
@@ -136,29 +139,6 @@ function DetailsCard() {
                                 </div>
                             </div>
                         </p>
-
-                        <div className="avatars">
-                            <a href="#" data-tooltip="Person 1" data-placement="top">
-                                <img
-                                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_avatar1.png"
-                                    alt="avatar1"
-                                />
-                            </a>
-
-                            <a href="#" data-tooltip="Person 2" data-placement="top">
-                                <img
-                                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_avatar2.png"
-                                    alt="avatar2"
-                                />
-                            </a>
-
-                            <a href="#" data-tooltip="Person 3" data-placement="top">
-                                <img
-                                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_avatar3.png"
-                                    alt="avatar3"
-                                />
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

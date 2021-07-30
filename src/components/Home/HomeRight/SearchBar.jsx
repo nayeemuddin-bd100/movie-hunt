@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { SEARCH_MOVIE } from '../../../Api_Config';
 import { GlobalContext } from '../../../context/GlobalState';
 
 function SearchBar() {
@@ -14,19 +15,13 @@ function SearchBar() {
         if (searchValue) {
             (async () => {
                 try {
-                    await axios
-                        .get(
-                            `https://api.themoviedb.org/3/search/movie?api_key=61a8b343fdd9fab973082cb4288fb534&language=en-US&query=${searchValue}`
-                        )
-                        .then((response) => {
-                            console.log(response.results);
-                            if (searchValue) {
-                                handleSearch(response.data.results);
-                            }
-                        });
+                    await axios.get(`${SEARCH_MOVIE}${searchValue}`).then((response) => {
+                        if (searchValue) {
+                            handleSearch(response.data.results);
+                        }
+                    });
                 } catch (error) {
-                    // console.log(error.message);
-                    // handleError(error.message);
+                    console.log(error.message);
                 }
             })();
             history.push('/explore');

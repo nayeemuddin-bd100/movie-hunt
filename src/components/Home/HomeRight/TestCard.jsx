@@ -2,12 +2,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IMAGE_URL } from '../../../Api_Config';
 import './TestCard.css';
 
 function TestCard({ movieName, imgId, id }) {
     return (
         <div className="card">
-            <img src={`https://image.tmdb.org/t/p/w1280/${imgId}`} />
+            {imgId ? (
+                <img src={`${IMAGE_URL}w1280/${imgId}`} />
+            ) : (
+                <img src={`${process.env.PUBLIC_URL}/assests/images/movie-time-poster.jpg`} />
+            )}
             <div className="info">
                 <p>{movieName}</p>
 

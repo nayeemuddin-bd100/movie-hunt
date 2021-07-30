@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useReducer } from 'react';
+import { POPULAR_MOVIES } from '../Api_Config';
 import { AppReducer } from './AppReducer';
 
 const initState = {
@@ -15,16 +16,12 @@ function GlobalState({ children }) {
     useEffect(() => {
         (async () => {
             try {
-                await axios
-                    .get(
-                        'https://api.themoviedb.org/3/movie/popular?api_key=61a8b343fdd9fab973082cb4288fb534&language=en-US&page=1'
-                    )
-                    .then((response) => {
-                        dispatch({
-                            type: 'FETCH_SUCCESS',
-                            payload: response.data.results,
-                        });
+                await axios.get(POPULAR_MOVIES).then((response) => {
+                    dispatch({
+                        type: 'FETCH_SUCCESS',
+                        payload: response.data.results,
                     });
+                });
             } catch (error) {
                 console.log(error.message);
                 dispatch({
